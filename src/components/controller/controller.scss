@@ -1,0 +1,18 @@
+@import '../_variables';
+
+.controller {
+  @include shadow(-4px, -6px);
+
+  width: 95%;
+  position: absolute;
+  bottom: 1rem;
+  display: flex;
+  left: 50%;
+  transform: translateX(-50%);
+
+  > button {
+    font-size: 2rem;
+    flex: 1;
+    color: $theme-ug-dark;
+  }
+}

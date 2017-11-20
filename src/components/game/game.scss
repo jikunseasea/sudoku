@@ -1,0 +1,9 @@
+@import '../_variables';
+.game {
+  width: 70vw;
+  height: 70vw;
+  margin: 2rem auto;
+  border: 0.1rem solid $theme-ug-dark;
+  display: flex;
+  flex-flow: row wrap;
+}

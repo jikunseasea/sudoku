@@ -1,0 +1,12 @@
+.controller {
+  box-shadow: 0 -4px 8px 0 rgba(0, 0, 0, 0.2), 0 -6px 20px 0 rgba(0, 0, 0, 0.19);
+  width: 95%;
+  position: absolute;
+  bottom: 1rem;
+  display: flex;
+  left: 50%;
+  transform: translateX(-50%); }
+  .controller > button {
+    font-size: 2rem;
+    flex: 1;
+    color: #333; }

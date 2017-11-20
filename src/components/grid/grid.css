@@ -1,0 +1,7 @@
+.grid {
+  border: 0.1rem solid #ddd;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font: 2rem monospace, sans-serif; }

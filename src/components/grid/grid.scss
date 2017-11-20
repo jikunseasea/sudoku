@@ -1,0 +1,12 @@
+
+@import '../_variables';
+
+
+.grid {
+  border: 0.1rem solid $theme-ug-light;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font: 2rem monospace, sans-serif;
+}

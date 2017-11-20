@@ -1,0 +1,12 @@
+@import '../_variables';
+
+.header {
+  height: 5rem;
+  background-color: steelblue;
+  font: 3rem monospace, sans-serif;
+  margin: 1rem auto;
+  padding: 1rem;
+  width: 95%;
+  color: $theme-ug-light;
+  @include shadow(4px, 6px);
+}

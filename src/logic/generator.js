@@ -4,45 +4,16 @@
 // ────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 //
 
-const makeRow = (length) => Array.from({ length }).fill(0);
-
-const makeMatrix = (row, col) => Array.from({ length: row }).map(row => makeRow(col));
-
-const cloneMatrix = (matrix) => Array.from({ length: matrix.length }).map((row, i) => [...matrix[i]]);
+const {
+  makeMatrix,
+  cloneMatrix,
+  getBoxDataFromMatrixIndex,
+  makeShuffledRow
+} = require('./matrix');
 
 const isRowFillable = (matrix, rowIndex, n) => matrix[rowIndex].every(v => v !== n);
 
 const isColFillable = (matrix, colIndex, n) => matrix.map(row => row[colIndex]).every(v => v !== n);
-
-const getBoxPos = (arr, index) => {
-  const boxCnt = Math.sqrt(arr.length);
-  const boxIndex = Math.floor(index / boxCnt);
-  const boxStartIndex = boxIndex * boxCnt;
-  const boxEndIndex = boxStartIndex + boxCnt;
-  return { boxCnt, boxIndex, boxStartIndex, boxEndIndex };
-}
-
-const getBoxDataFromMatrixIndex = (matrix, { rowIndex, colIndex }) => {
-  const {
-    boxCnt: boxRowCnt,
-    boxIndex: boxRowIndex,
-    boxStartIndex: boxRowStartIndex,
-    boxEndIndex: boxRowEndIndex
-  } = getBoxPos(matrix, rowIndex);
-  const {
-    boxCnt: boxColCnt,
-    boxIndex: boxColIndex,
-    boxStartIndex: boxColStartIndex,
-    boxEndIndex: boxColEndIndex
-  } = getBoxPos(matrix[0], colIndex);
-  const boxData = [];
-  for (let i = boxRowStartIndex; i < boxRowEndIndex; ++i) {
-    for (let j = boxColStartIndex; j < boxColEndIndex; ++j) {
-      boxData.push(matrix[i][j]);
-    }
-  }
-  return boxData;
-}
 
 const isBoxFillable = (matrix, { rowIndex, colIndex }, n) => {
   const boxData = getBoxDataFromMatrixIndex(matrix, { rowIndex, colIndex });
@@ -56,20 +27,6 @@ const isFillable = (matrix, { rowIndex, colIndex }, n) => {
   if (!isBoxFillable(matrix, { rowIndex, colIndex }, n)) return false;
   return true;
 }
-
-const makeSeqRow = (size) => makeRow(size).map((_, i) => i);
-
-const shuffle = (arr) => {
-  const cloned = [...arr];
-  const { length } = cloned;
-  for (let i = 0; i < length - 1; ++i) {
-    const randomIndex = i + Math.floor(Math.random() * (length - i));
-    [cloned[i], cloned[randomIndex]] = [cloned[randomIndex], cloned[i]];
-  }
-  return cloned;
-}
-
-const makeShuffledRow = (size) => shuffle(makeSeqRow(size));
 
 const fillNum = (matrix, n, rowIndex = 0) => {
   const rowCnt = matrix.length;
@@ -118,11 +75,4 @@ const generate = (size) => {
   return solution.matrix;
 };
 
-export default generate;
-
-//
-// ─── TEST ───────────────────────────────────────────────────────────────────────
-//
-
-// const sl = genSolution(9); 
-// console.log(sl);
+module.exports = { generate };

@@ -7,12 +7,16 @@ import Grid from '../grid/grid';
 import {
   checkIsBottomBoundary,
   checkIsRightBoundary
-} from '../../toolkit';
+} from '../../logic/matrix';
 
 // 宫
-const Box = ({ boxSize, boxIndex }) => {
-
-  const renderGrids = (boxSize) => {
+const Box = ({
+  boxSize,
+  boxIndex,
+  boxSolution,
+  boxPuzzled
+}) => {
+  const renderGrids = () => {
     const grids = [];
     for (let i = 0; i < boxSize ** 2; ++i) {
       grids.push(
@@ -20,13 +24,15 @@ const Box = ({ boxSize, boxIndex }) => {
           key={i}
           index={i}
           boxSize={boxSize}
-          value={0}
-          validaty={false} />
+          gridSolution={boxSolution[i]}
+          gridPuzzled={boxPuzzled[i]}
+          // value={boxSolution[i]}
+          // validaty={false} />
+          />
       );
     }
     return grids;
   };
-
 
   const computeStyle = () => {
     const width = `${1 / boxSize * 100}%`;
@@ -48,7 +54,7 @@ const Box = ({ boxSize, boxIndex }) => {
 
   return (
     <div className="box" style={computeStyle()}>
-      {renderGrids(boxSize)}
+      {renderGrids()}
     </div>
   );
 }

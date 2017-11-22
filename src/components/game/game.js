@@ -1,22 +1,39 @@
 import React from 'react';
 
-
-import { BOX_SIZE as boxSize } from '../../constants/game';
-
 import Box from '../box/box';
+
+import {
+  getBoxDataFromMatrixIndex
+} from '../../logic/matrix';
 
 import './game.css';
 
-const Game = () => {
+const Game = ({
+  solution,
+  puzzled,
+  boxSize
+}) => {
 
-  const renderBoxes = (boxSize) => {
-    const boxCnt = boxSize ** 2;
+  const renderBoxes = () => {
+    const length = boxSize ** 2;
     const boxes = [];
-    for (let i = 0; i < boxCnt; ++i) {
+    for (let i = 0; i < length; ++i) {
+      const rowIndex = Math.floor(i / boxSize) * boxSize;
+      const colIndex = (i % boxSize) * boxSize;
+      const boxSolution = getBoxDataFromMatrixIndex(solution, {
+        rowIndex,
+        colIndex
+      });
+      const boxPuzzled = getBoxDataFromMatrixIndex(puzzled, {
+        rowIndex,
+        colIndex
+      });
       boxes.push(
         <Box
           key={i}
           boxIndex={i}
+          boxSolution={boxSolution}
+          boxPuzzled={boxPuzzled}
           boxSize={boxSize} />
       );
     }
@@ -25,7 +42,7 @@ const Game = () => {
 
   return (
     <div className="game">
-      {renderBoxes(boxSize)}
+      {renderBoxes()}
     </div>
   );
 

@@ -9,19 +9,26 @@ import { GRID } from '../../constants/game';
 import './grid.css';
 
 const Grid = ({
-  index,
+  // index,
   boxSize,
+  gridCor,
   gridSolution,
   gridPuzzled,
   value,
-  validaty
+  validaty,
+  handlePop
 }) => {
   const renderValue = () => {
     if (gridPuzzled) {
       return gridSolution;
     }
-    
   };
+
+  const handleClick = () => {
+    if (!gridPuzzled) {
+      handlePop(gridCor);
+    }
+  }
 
   const computStyle = () => {
     const color = validaty ? GRID.VALID_COLOR : GRID.INVALID_COLOR;
@@ -31,6 +38,9 @@ const Grid = ({
       width,
       height: width
     };
+    const { rowIndex, colIndex } = gridCor;
+    const length = boxSize ** 2;
+    const index = rowIndex * length + colIndex;
     if (checkIsRightBoundary(index, boxSize)) {
       style = {
         ...style,
@@ -53,7 +63,12 @@ const Grid = ({
   };
 
   return (
-    <div className="grid" style={computStyle()}>{renderValue()}</div>
+    <div
+      className="grid"
+      style={computStyle()}
+      onClick={handleClick}>
+      {renderValue()}
+    </div>
   );
 }
 

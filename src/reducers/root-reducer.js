@@ -2,7 +2,8 @@ import { combineReducers } from 'redux';
 
 import {
   SET_PUZZLED,
-  SET_SOLUTION
+  SET_SOLUTION,
+  SET_CUR_GRID
 } from '../constants/actionNames';
 
 const solution = (state = [], action) => {
@@ -23,8 +24,17 @@ const puzzled = (state = [], action) => {
   }
 };
 
+const curGrid = (state = {}, action) => {
+  switch (action.type) {
+    case SET_CUR_GRID:
+      return action.cor;
+    default:
+      return state;
+  }
+}
 
 export default combineReducers({
   solution,
-  puzzled
+  puzzled,
+  curGrid
 });

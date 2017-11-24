@@ -12,11 +12,13 @@ import {
 // 宫
 const Box = ({
   boxSize,
-  // boxIndex,
   boxCor,
   boxSolution,
   boxPuzzled,
-  handlePop
+  handlePop,
+  curGrid,
+  // boxValidation
+  boxValue
 }) => {
   const renderGrids = () => {
     const grids = [];
@@ -32,7 +34,10 @@ const Box = ({
           gridCor={gridCor}
           gridSolution={boxSolution[i]}
           gridPuzzled={boxPuzzled[i]}
+          gridValue={boxValue[i]}
+          // gridValidation={boxValidation[i]}
           handlePop={handlePop}
+          curGrid={curGrid}
           // value={boxSolution[i]}
           // validaty={false} />
           />

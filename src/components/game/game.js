@@ -12,7 +12,10 @@ const Game = ({
   solution,
   puzzled,
   boxSize,
-  handlePop
+  handlePop,
+  curGrid,
+  // validation
+  value
 }) => {
 
   const renderBoxes = () => {
@@ -22,25 +25,24 @@ const Game = ({
       const boxRowIndex = Math.floor(i / boxSize);
       const boxColIndex = i % boxSize;
       const boxCor = { boxRowIndex, boxColIndex };
-      const rowIndex = boxRowIndex * boxSize;
-      const colIndex = boxColIndex * boxSize;
-      const boxSolution = getBoxDataFromMatrixIndex(solution, {
-        rowIndex,
-        colIndex
-      });
-      const boxPuzzled = getBoxDataFromMatrixIndex(puzzled, {
-        rowIndex,
-        colIndex
-      });
+      const startCor = {
+        rowIndex: boxRowIndex * boxSize,
+        colIndex: boxColIndex * boxSize
+      }
+      const boxSolution = getBoxDataFromMatrixIndex(solution, startCor);
+      const boxPuzzled = getBoxDataFromMatrixIndex(puzzled, startCor);
+      // const boxValidation = getBoxDataFromMatrixIndex(validation, startCor);
+      const boxValue = getBoxDataFromMatrixIndex(value, startCor);
       boxes.push(
         <Box
           key={i}
-          // boxIndex={i}
           boxCor={boxCor}
           boxSolution={boxSolution}
           boxPuzzled={boxPuzzled}
           boxSize={boxSize}
-          handlePop={handlePop} />
+          handlePop={handlePop}
+          curGrid={curGrid}
+          boxValue={boxValue} />
       );
     }
     return boxes;

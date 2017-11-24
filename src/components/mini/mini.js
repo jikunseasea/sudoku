@@ -1,8 +1,17 @@
 import React from 'react';
+import ReactModal from 'react-modal';
 
-const Mini = () => {
+const Mini = ({
+  miniShown,
+  setMiniShown
+}) => {
+
   return (
-    <div></div>
+    <ReactModal 
+      isOpen={miniShown}
+      contentLabel="Minimal Modal Example" >
+      <button onClick={() => setMiniShown(false)}>Close Modal</button>
+    </ReactModal>
   );
 }
 

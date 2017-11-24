@@ -5,23 +5,34 @@ import {
   checkIsRightBoundary
 } from '../../logic/matrix';
 
-import { GRID } from '../../constants/game';
 import './grid.css';
 
 const Grid = ({
-  // index,
   boxSize,
   gridCor,
   gridSolution,
   gridPuzzled,
-  value,
-  validaty,
-  handlePop
+  gridValue,
+  handlePop,
+  curGrid
 }) => {
+  const isCur = () => (
+    (gridCor.rowIndex === curGrid.rowIndex)
+      && (gridCor.colIndex === curGrid.colIndex)
+  );
+  
+  const isValid = () => {
+    if (!gridPuzzled && (gridSolution !== gridValue)) {
+      return false;
+    }
+    return true;
+  }
+
   const renderValue = () => {
     if (gridPuzzled) {
       return gridSolution;
     }
+    return gridValue;
   };
 
   const handleClick = () => {
@@ -30,42 +41,38 @@ const Grid = ({
     }
   }
 
-  const computStyle = () => {
-    const color = validaty ? GRID.VALID_COLOR : GRID.INVALID_COLOR;
-    const width = `${1 / boxSize * 100}%`;
-    let style = {
-      color,
-      width,
-      height: width
-    };
+
+  const computeClassName = () => {
+    const classNames = ['grid'];
     const { rowIndex, colIndex } = gridCor;
     const length = boxSize ** 2;
     const index = rowIndex * length + colIndex;
     if (checkIsRightBoundary(index, boxSize)) {
-      style = {
-        ...style,
-        borderRight: 'none'
-      }
+      classNames.push('right-boundary');
     }
     if (checkIsBottomBoundary(index, boxSize)) {
-      style = {
-        ...style,
-        borderBottom: 'none'
-      }
+      classNames.push('bottom-boundary');
     }
     if (gridPuzzled) {
-      style = {
-        ...style,
-        backgroundColor: GRID.FIXED_BACKGROUND_COLOR
-      }
+      classNames.push('puzzled');
     }
-    return style;
+    if (isValid()) {
+      classNames.push('valid');
+    } else {
+      classNames.push('invalid');
+    }
+    return classNames.join(' ');
+  };
+
+  const computeStyle = () => {
+    const width = `${1 / boxSize * 100}%`;
+    return { width, height: width };
   };
 
   return (
     <div
-      className="grid"
-      style={computStyle()}
+      className={computeClassName()}
+      style={computeStyle()}
       onClick={handleClick}>
       {renderValue()}
     </div>

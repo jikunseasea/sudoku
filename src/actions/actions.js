@@ -2,16 +2,27 @@ import {
   SET_SOLUTION,
   SET_PUZZLED,
   SET_VALUE,
-  SET_VALIDATION,
-  SET_CUR_GRID
+  // SET_VALIDATION,
+  SET_CUR_GRID,
+  SET_MINI_SHOWN
 } from '../constants/actionNames';
 
-export const setSolution = (solution) => ({ type: SET_SOLUTION, solution});
+import { BOX_SIZE as boxSize } from '../constants/game';
+import { makeMatrix } from '../logic/matrix';
+import { generate } from '../logic/generator';
+import { puzzle } from '../logic/puzzler';
 
-export const setPuzzled = (puzzled) => ({ type: SET_PUZZLED, puzzled});
+const defaultSolution = generate(boxSize ** 2);
+export const setSolution = (solution = defaultSolution) => ({ type: SET_SOLUTION, solution });
 
-export const setValue = (value) => ({ type: SET_VALUE, value});
+const defaultPuzzled = puzzle(boxSize ** 2);
+export const setPuzzled = (puzzled = defaultPuzzled) => ({ type: SET_PUZZLED, puzzled });
 
-export const setValidation = (validation) => ({ type: SET_VALIDATION, validation});
+const defaultValue = makeMatrix(boxSize ** 2, boxSize ** 2, 0);
+export const setValue = (value = defaultValue) => ({ type: SET_VALUE, value });
 
-export const setCurGrid = (cor) => ({ type: SET_CUR_GRID, cor});
+// export const setValidation = (validation) => ({ type: SET_VALIDATION, validation});
+
+export const setCurGrid = (cor) => ({ type: SET_CUR_GRID, cor });
+
+export const setMiniShown = (miniShown) => ({ type: SET_MINI_SHOWN, miniShown });

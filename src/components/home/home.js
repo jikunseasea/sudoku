@@ -7,8 +7,9 @@ import Game from '../game/game'
 import Controller from '../controller/controller';
 import Mini from '../mini/mini';
 
-import { generate } from '../../logic/generator';
-import { puzzle } from '../../logic/puzzler';
+// import { generate } from '../../logic/generator';
+// import { puzzle } from '../../logic/puzzler';
+// import { checkCurrentMatrix } from '../../logic/checker';
 
 import { BOX_SIZE as boxSize } from '../../constants/game';
 
@@ -16,24 +17,44 @@ import {
   setSolution,
   setPuzzled,
   setValue,
-  setValidation
+  // setValidation,
+  setCurGrid,
+  setMiniShown
 } from '../../actions/actions';
-
 
 import './home.css';
 
 const Home = ({
+  value,
+  solution,
+  puzzled,
+  curGrid,
+  miniShown,
   setSolution,
-  setPuzzled
+  setPuzzled,
+  setCurGrid,
+  setMiniShown,
+  setValue
 }) => {
 
-  const solution = generate(boxSize ** 2);
-  setSolution(solution);
+  setSolution();
+  setPuzzled();
+  setValue();
+  // const solution = generate(boxSize ** 2);
+  // setSolution(solution);
 
-  const puzzled = puzzle(boxSize ** 2);
-  setPuzzled(puzzled);
+  // const puzzled = puzzle(boxSize ** 2);
+  // setPuzzled(puzzled);
 
-  const handlePop = (gridCor) => {};
+  // const validation = checkCurrentMatrix(value);
+  // setValidation(validation);
+
+  const handlePop = (gridCor) => {
+    // Mark cur grid
+    setCurGrid(gridCor);
+    // Show Mini
+    setMiniShown(true);
+  };
 
   return (
     <div className="home">
@@ -42,20 +63,38 @@ const Home = ({
         solution={solution}
         puzzled={puzzled}
         boxSize={boxSize}
-        handlePop={handlePop} />
+        handlePop={handlePop}
+        curGird={curGrid}
+        value={value} />
       <Controller />
-      <Mini />
+      <Mini
+        miniShown={miniShown}
+        setMiniShown={setMiniShown} />
     </div>
   );
 }
 
-const mapStateToProps = ({ solution }) => ({});
+const mapStateToProps = ({
+  curGrid,
+  value,
+  miniShown,
+  solution,
+  puzzled
+}) => ({
+  solution,
+  puzzled,
+  curGrid,
+  value,
+  miniShown
+});
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
   setSolution,
   setPuzzled,
   setValue,
-  setValidation
+  setCurGrid,
+  setMiniShown,
+  setValue
 }, dispatch);
 
 export default connect(

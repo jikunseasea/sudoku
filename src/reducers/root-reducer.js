@@ -4,8 +4,9 @@ import {
   SET_PUZZLED,
   SET_SOLUTION,
   SET_VALUE,
-  SET_VALIDATION,
-  SET_CUR_GRID
+  // SET_VALIDATION,
+  SET_CUR_GRID,
+  SET_MINI_SHOWN
 } from '../constants/actionNames';
 
 const solution = (state = [], action) => {
@@ -26,7 +27,7 @@ const puzzled = (state = [], action) => {
   }
 };
 
-const value = (state = [], action) => {
+const value = (state = [[]], action) => {
   switch (action.type) {
     case SET_VALUE:
       return action.value;
@@ -36,14 +37,14 @@ const value = (state = [], action) => {
 };
 
 
-const validation = (state = [], action) => {
-  switch (action.type) {
-    case SET_VALIDATION:
-      return action.validation;
-    default:
-      return state;
-  }
-};
+// const validation = (state = [], action) => {
+//   switch (action.type) {
+//     case SET_VALIDATION:
+//       return action.validation;
+//     default:
+//       return state;
+//   }
+// };
 
 const curGrid = (state = {}, action) => {
   switch (action.type) {
@@ -54,10 +55,20 @@ const curGrid = (state = {}, action) => {
   }
 };
 
+const miniShown = (state = false, action) => {
+  switch (action.type) {
+    case SET_MINI_SHOWN:
+      return action.miniShown;
+    default:
+      return state;
+  }
+};
+
 export default combineReducers({
   solution,
-  puzzled,
-  value,
-  validation,
-  curGrid
+  puzzled, // 2-d matrix is puzzled
+  value, // 2-d matrix current value
+  // validation, // 2-d matrix validation
+  curGrid,
+  miniShown
 });

@@ -5,3 +5,18 @@
   justify-content: center;
   align-items: center;
   font: 2rem monospace, sans-serif; }
+
+.right-boundary {
+  border-right: none; }
+
+.bottom-boundary {
+  border-bottom: none; }
+
+.puzzled {
+  background-color: #eee; }
+
+.valid {
+  color: #333; }
+
+.inValid {
+  color: "red"; }

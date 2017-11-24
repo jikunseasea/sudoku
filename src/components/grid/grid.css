@@ -24,7 +24,10 @@
   background-color: #eee; }
 
 .valid {
-  color: #333; }
+  color: #888; }
 
-.inValid {
-  color: "red"; }
+.invalid {
+  color: red; }
+
+.cur-grid {
+  background-color: #2ecc71; }

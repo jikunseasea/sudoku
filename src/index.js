@@ -7,7 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import rootReducer from './reducers/root-reducer';
 import './index.css';
-import App from './components/app/app';
+import App from './app';
 
 const store = createStore(
   rootReducer,

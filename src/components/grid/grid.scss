@@ -1,7 +1,8 @@
 @import '../_variables';
 
-$inValidColor: 'red';
-$fixedBackgroundColor: #eee;
+$invalid-color: red;
+$fixed-background-color: #eee;
+$cur-grid-background-color: #2ecc71;
 
 .grid {
   border-top: $border-width solid $theme-ug-light;
@@ -10,34 +11,38 @@ $fixedBackgroundColor: #eee;
   display: flex;
   justify-content: center;
   align-items: center;
-  font: 2rem monospace, sans-serif;
+  font: $grid-font-size monospace, sans-serif;
   user-select: none;
 }
 
 .right-boundary {
-  border-right: none;
+  @include none-border-right();
 }
 
 .bottom-boundary {
-  border-bottom: none;
+  @include none-border-bottom();
 }
 
 .left-boundary {
-  border-left: none;
+  @include none-border-left();
 }
 
 .top-boundary {
-  border-top: none;
+  @include none-border-top();
 }
 
 .puzzled {
-  background-color: $fixedBackgroundColor;
+  background-color: $fixed-background-color;
 }
 
 .valid {
   color: $theme-ug-dark;
 }
 
-.inValid {
-  color: $inValidColor;
+.invalid {
+  color: $invalid-color;
+}
+
+.cur-grid {
+  background-color: $cur-grid-background-color;
 }

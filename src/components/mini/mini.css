@@ -1,13 +1,33 @@
 .mini {
   position: absolute;
-  width: 40vw;
-  height: 40vw;
+  width: 18rem;
+  height: 24rem;
   left: 50%;
   top: 40%;
   transform: translate(-50%, -50%);
-  border: solid #333 0.2rem; }
+  border-right: solid #888 0.1rem;
+  border-bottom: solid #888 0.1rem;
+  display: flex;
+  flex-flow: row wrap;
+  font: 2rem monospace, sans-serif;
+  background-color: #ecf0f1;
+  user-select: none; }
+  .mini .mini-grid {
+    border-top: 0.1rem solid #888;
+    border-left: 0.1rem solid #888;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+  .mini .special-grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 0.1rem solid #888;
+    border-left: 0.1rem solid #888;
+    box-sizing: border-box; }
 
 @media (min-width: 500px) {
   .mini {
-    max-width: 200px;
-    max-height: 200px; } }
+    max-width: 180px;
+    max-height: 240px; } }

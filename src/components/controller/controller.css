@@ -9,7 +9,7 @@
   .controller > button {
     font-size: 2rem;
     flex: 1;
-    color: #333; }
+    color: #555; }
 
 @media (min-width: 500px) {
   .controller {

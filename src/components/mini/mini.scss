@@ -1,18 +1,45 @@
-@import '../variables';
+@import '../_variables';
+
+$mini-grid-background-color: #ecf0f1;
 
 .mini {
   position: absolute;
-  width: 40vw;
-  height: 40vw;
+  width: 18rem;
+  height: 24rem;
   left: 50%;
   top: 40%;
   transform: translate(-50%, -50%);
-  border: solid $theme-ug-dark 0.2rem;
+  border-right: solid $theme-ug-dark $border-width;
+  border-bottom: solid $theme-ug-dark $border-width;
+  display: flex;
+  flex-flow: row wrap;
+  font: $grid-font-size monospace, sans-serif;
+  background-color: $mini-grid-background-color;
+  user-select: none;
+
+  .mini-grid {
+    border-top: $border-width solid $theme-ug-dark;
+    border-left: $border-width solid $theme-ug-dark;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .special-grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: $border-width solid $theme-ug-dark;
+    border-left: $border-width solid $theme-ug-dark;
+    box-sizing: border-box;
+  }
 }
+
 
 @media (min-width: 500px) {
   .mini {
-    max-width: 200px;
-    max-height: 200px;
+    max-width: 180px;
+    max-height: 240px;
   }
 }

@@ -1,7 +1,25 @@
 $theme-ug-light: #ddd;
-$theme-ug-dark: #333;
+$theme-ug-dark: #888;
 $border-width: 0.1rem;
+$theme-ug-darker: #555;
+$grid-font-size: 2rem;
 
 @mixin shadow($v1, $v2) {
   box-shadow: 0 $v1 8px 0 rgba(0, 0, 0, 0.2), 0 $v2 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+@mixin none-border-right() {
+  border-right: none;
+}
+
+@mixin none-border-bottom() {
+  border-bottom: none;
+}
+
+@mixin none-border-left() {
+  border-left: none;
+}
+
+@mixin none-border-top() {
+  border-top: none;
 }

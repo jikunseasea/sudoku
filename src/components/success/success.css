@@ -1,0 +1,18 @@
+.success {
+  position: absolute;
+  width: 25rem;
+  height: 20rem;
+  left: 50%;
+  top: 40%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+  font: 2rem monospace, sans-serif; }
+
+@media (min-width: 500px) {
+  .mini {
+    max-width: 250px;
+    max-height: 200px; } }

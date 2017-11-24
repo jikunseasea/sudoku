@@ -1,22 +1,26 @@
 import React from 'react';
 import { connect } from 'react-redux';
-
 import Box from '../box/box';
 
 import {
-  getBoxDataFromMatrixIndex
+  getBoxDataFromMatrixIndex,
+  isEqualMatrix
 } from '../../logic/matrix';
 
 import './game.css';
 
 const Game = ({
-  value,
+  curGrid,
+  valueMatrix,
   solution,
   puzzled,
-  curGrid,
   boxSize,
-  handlePop
+  handlePop,
+  handleSuccess
 }) => {
+  if (isEqualMatrix(valueMatrix, solution)) {
+    handleSuccess();
+  }
 
   const renderBoxes = () => {
     const length = boxSize ** 2;
@@ -31,7 +35,7 @@ const Game = ({
       }
       const boxSolution = getBoxDataFromMatrixIndex(solution, startCor);
       const boxPuzzled = getBoxDataFromMatrixIndex(puzzled, startCor);
-      const boxValue = getBoxDataFromMatrixIndex(value, startCor);
+      const boxValue = getBoxDataFromMatrixIndex(valueMatrix, startCor);
       boxes.push(
         <Box
           key={i}
@@ -56,15 +60,10 @@ const Game = ({
 }
 
 const mapStateToProps = ({
-  solution,
-  puzzled,
-  value,
-  curGrid
+  curGrid,
+  valueMatrix
 }) => ({
-  solution,
-  puzzled,
-  value,
-  curGrid
+  curGrid,
+  valueMatrix
 });
-
 export default connect(mapStateToProps)(Game);

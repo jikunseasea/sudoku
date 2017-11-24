@@ -3,8 +3,6 @@
 .box {
   display: flex;
   flex-flow: row wrap;
-  // border-right: 0.1rem solid $theme-ug-dark;
-  // border-bottom: 0.1rem solid $theme-ug-dark;
   border-top: $border-width solid $theme-ug-dark;
   border-left: $border-width solid $theme-ug-dark;
 

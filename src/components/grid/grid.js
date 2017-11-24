@@ -24,7 +24,7 @@ const Grid = ({
   );
   
   const isValid = () => {
-    if (!gridPuzzled && (gridSolution !== gridValue)) {
+    if (!gridPuzzled && (gridValue !== '') && (gridSolution !== gridValue)) {
       return false;
     }
     return true;
@@ -69,6 +69,9 @@ const Grid = ({
       classNames.push('valid');
     } else {
       classNames.push('invalid');
+    }
+    if (isCur()) {
+      classNames.push('cur-grid');
     }
     return classNames.join(' ');
   };

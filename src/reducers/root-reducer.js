@@ -6,8 +6,12 @@ import {
   SET_VALUE,
   // SET_VALIDATION,
   SET_CUR_GRID,
-  SET_MINI_SHOWN
+  SET_MINI_SHOWN,
+  SET_SUCCESS_SHOWN,
+  INIT_VALUE
 } from '../constants/actionNames';
+
+import { cloneMatrix } from '../logic/matrix';
 
 const solution = (state = [], action) => {
   switch (action.type) {
@@ -27,24 +31,19 @@ const puzzled = (state = [], action) => {
   }
 };
 
-const value = (state = [[]], action) => {
+const valueMatrix = (state = [[]], action) => {
   switch (action.type) {
+    case INIT_VALUE:
+      return action.valueMatrix;
     case SET_VALUE:
-      return action.value;
+      const { rowIndex, colIndex } = action.cor;
+      const valueMatrix = cloneMatrix(state);
+      valueMatrix[rowIndex][colIndex] = action.value;
+      return valueMatrix;
     default:
       return state;
   }
 };
-
-
-// const validation = (state = [], action) => {
-//   switch (action.type) {
-//     case SET_VALIDATION:
-//       return action.validation;
-//     default:
-//       return state;
-//   }
-// };
 
 const curGrid = (state = {}, action) => {
   switch (action.type) {
@@ -64,11 +63,20 @@ const miniShown = (state = false, action) => {
   }
 };
 
+const successShown = (state = false, action) => {
+  switch (action.type) {
+    case SET_SUCCESS_SHOWN:
+      return action.successShown;
+    default:
+      return state;
+  }
+};
+
 export default combineReducers({
   solution,
-  puzzled, // 2-d matrix is puzzled
-  value, // 2-d matrix current value
-  // validation, // 2-d matrix validation
+  puzzled,
+  valueMatrix,
   curGrid,
-  miniShown
+  miniShown,
+  successShown
 });

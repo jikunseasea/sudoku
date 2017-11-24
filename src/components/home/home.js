@@ -13,8 +13,13 @@ import { BOX_SIZE as boxSize } from '../../constants/game';
 
 import {
   setSolution,
-  setPuzzled
+  setPuzzled,
+  setValue,
+  setValidation
 } from '../../actions/actions';
+
+
+import './home.css';
 
 const Home = ({
   setSolution,
@@ -28,7 +33,7 @@ const Home = ({
   setPuzzled(puzzled);
 
   return (
-    <div>
+    <div className="home">
       <Header />
       <Game
         solution={solution}
@@ -43,7 +48,9 @@ const mapStateToProps = ({ solution }) => ({});
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
   setSolution,
-  setPuzzled
+  setPuzzled,
+  setValue,
+  setValidation
 }, dispatch);
 
 export default connect(

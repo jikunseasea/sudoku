@@ -1,0 +1,4 @@
+@media (min-width: 500px) {
+  .home {
+    margin: 0 auto;
+    max-width: 500px; } }

@@ -16,3 +16,9 @@
     color: $theme-ug-dark;
   }
 }
+
+@media (min-width: 500px) {
+  .controller {
+    max-width: 500px;
+  }
+}

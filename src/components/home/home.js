@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import Header from '../header/header';
 import Game from '../game/game'
 import Controller from '../controller/controller';
+import Mini from '../mini/mini';
 
 import { generate } from '../../logic/generator';
 import { puzzle } from '../../logic/puzzler';
@@ -32,14 +33,18 @@ const Home = ({
   const puzzled = puzzle(boxSize ** 2);
   setPuzzled(puzzled);
 
+  const handlePop = (gridCor) => {};
+
   return (
     <div className="home">
       <Header />
       <Game
         solution={solution}
         puzzled={puzzled}
-        boxSize={boxSize} />
+        boxSize={boxSize}
+        handlePop={handlePop} />
       <Controller />
+      <Mini />
     </div>
   );
 }

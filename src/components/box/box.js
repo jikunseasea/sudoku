@@ -12,20 +12,27 @@ import {
 // 宫
 const Box = ({
   boxSize,
-  boxIndex,
+  // boxIndex,
+  boxCor,
   boxSolution,
-  boxPuzzled
+  boxPuzzled,
+  handlePop
 }) => {
   const renderGrids = () => {
     const grids = [];
+    const { boxRowIndex, boxColIndex } = boxCor;
     for (let i = 0; i < boxSize ** 2; ++i) {
+      const rowIndex = boxRowIndex * boxSize + Math.floor(i / boxSize);
+      const colIndex = boxColIndex * boxSize + i % boxSize;
+      const gridCor = { rowIndex, colIndex };
       grids.push(
         <Grid
           key={i}
-          index={i}
           boxSize={boxSize}
+          gridCor={gridCor}
           gridSolution={boxSolution[i]}
           gridPuzzled={boxPuzzled[i]}
+          handlePop={handlePop}
           // value={boxSolution[i]}
           // validaty={false} />
           />
@@ -37,6 +44,8 @@ const Box = ({
   const computeStyle = () => {
     const width = `${1 / boxSize * 100}%`;
     let style = { width, height: width };
+    const { boxRowIndex, boxColIndex } = boxCor;
+    const boxIndex = boxRowIndex * boxSize + boxColIndex;
     if (checkIsRightBoundary(boxIndex, boxSize)) {
       style = {
         ...style,

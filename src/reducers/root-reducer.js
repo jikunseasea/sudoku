@@ -4,7 +4,8 @@ import {
   SET_PUZZLED,
   SET_SOLUTION,
   SET_VALUE,
-  SET_VALIDATION
+  SET_VALIDATION,
+  SET_CUR_GRID
 } from '../constants/actionNames';
 
 const solution = (state = [], action) => {
@@ -14,7 +15,7 @@ const solution = (state = [], action) => {
     default:
       return state;
   }
-}
+};
 
 const puzzled = (state = [], action) => {
   switch (action.type) {
@@ -32,7 +33,7 @@ const value = (state = [], action) => {
     default:
       return state;
   }
-}
+};
 
 
 const validation = (state = [], action) => {
@@ -42,11 +43,21 @@ const validation = (state = [], action) => {
     default:
       return state;
   }
-}
+};
+
+const curGrid = (state = {}, action) => {
+  switch (action.type) {
+    case SET_CUR_GRID:
+      return action.cor;
+    default:
+      return state;
+  }
+};
 
 export default combineReducers({
   solution,
   puzzled,
   value,
-  validation
+  validation,
+  curGrid
 });

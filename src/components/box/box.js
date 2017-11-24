@@ -17,7 +17,6 @@ const Box = ({
   boxPuzzled,
   handlePop,
   curGrid,
-  // boxValidation
   boxValue
 }) => {
   const renderGrids = () => {
@@ -35,39 +34,35 @@ const Box = ({
           gridSolution={boxSolution[i]}
           gridPuzzled={boxPuzzled[i]}
           gridValue={boxValue[i]}
-          // gridValidation={boxValidation[i]}
           handlePop={handlePop}
-          curGrid={curGrid}
-          // value={boxSolution[i]}
-          // validaty={false} />
-          />
+          curGrid={curGrid} />
       );
     }
     return grids;
   };
 
-  const computeStyle = () => {
-    const width = `${1 / boxSize * 100}%`;
-    let style = { width, height: width };
+  const computeClassName = () => {
+    const classNames = ['box'];
     const { boxRowIndex, boxColIndex } = boxCor;
     const boxIndex = boxRowIndex * boxSize + boxColIndex;
     if (checkIsRightBoundary(boxIndex, boxSize)) {
-      style = {
-        ...style,
-        borderRight: 'none'
-      }
+      classNames.push('right-box');
     }
     if (checkIsBottomBoundary(boxIndex, boxSize)) {
-      style = {
-        ...style,
-        borderBottom: 'none'
-      }
+      classNames.push('bottom-box');
     }
-    return style;
+    return classNames.join(' ');
+  };
+
+  const computeStyle = () => {
+    const width = `${1 / boxSize * 100}%`;
+    return { width, height: width };
   }
 
   return (
-    <div className="box" style={computeStyle()}>
+    <div
+      className={computeClassName()}
+      style={computeStyle()}>
       {renderGrids()}
     </div>
   );

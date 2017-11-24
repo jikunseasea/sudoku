@@ -1,0 +1,8 @@
+.mini {
+  position: absolute;
+  width: 40%vw;
+  height: 40%vw;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border: solid black 0.2rem; }

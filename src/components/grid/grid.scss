@@ -4,20 +4,30 @@ $inValidColor: 'red';
 $fixedBackgroundColor: #eee;
 
 .grid {
-  border: 0.1rem solid $theme-ug-light;
+  border-top: $border-width solid $theme-ug-light;
+  border-left: $border-width solid $theme-ug-light;
   box-sizing: border-box;
   display: flex;
   justify-content: center;
   align-items: center;
   font: 2rem monospace, sans-serif;
+  user-select: none;
 }
 
 .right-boundary {
-  border-right: none
+  border-right: none;
 }
 
 .bottom-boundary {
-  border-bottom: none
+  border-bottom: none;
+}
+
+.left-boundary {
+  border-left: none;
+}
+
+.top-boundary {
+  border-top: none;
 }
 
 .puzzled {

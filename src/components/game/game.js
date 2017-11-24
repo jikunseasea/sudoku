@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import Box from '../box/box';
 
@@ -9,13 +10,12 @@ import {
 import './game.css';
 
 const Game = ({
+  value,
   solution,
   puzzled,
-  boxSize,
-  handlePop,
   curGrid,
-  // validation
-  value
+  boxSize,
+  handlePop
 }) => {
 
   const renderBoxes = () => {
@@ -31,7 +31,6 @@ const Game = ({
       }
       const boxSolution = getBoxDataFromMatrixIndex(solution, startCor);
       const boxPuzzled = getBoxDataFromMatrixIndex(puzzled, startCor);
-      // const boxValidation = getBoxDataFromMatrixIndex(validation, startCor);
       const boxValue = getBoxDataFromMatrixIndex(value, startCor);
       boxes.push(
         <Box
@@ -56,4 +55,16 @@ const Game = ({
 
 }
 
-export default Game;
+const mapStateToProps = ({
+  solution,
+  puzzled,
+  value,
+  curGrid
+}) => ({
+  solution,
+  puzzled,
+  value,
+  curGrid
+});
+
+export default connect(mapStateToProps)(Game);

@@ -59,6 +59,10 @@ const checkIsRightBoundary = (index, size) => index % size === size - 1;
 
 const checkIsBottomBoundary = (index, size) => Math.floor(index / size) === size - 1;
 
+const checkIsLeftBoundary = (index, size) => index % size === 0;
+
+const checkIsTopBoundary = (index, size) => index < size;
+
 const overrideMatrix = (defaultMatrix, matrix, fn) => {
   const cloned = cloneMatrix(defaultMatrix);
   matrix.forEach((row, i) => {
@@ -98,5 +102,7 @@ module.exports = {
   makeShuffledRow,
   checkIsBottomBoundary,
   checkIsRightBoundary,
+  checkIsLeftBoundary,
+  checkIsTopBoundary,
   overrideMatrix
 };

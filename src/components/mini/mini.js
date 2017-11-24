@@ -1,18 +1,24 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import ReactModal from 'react-modal';
+
+import './mini.css';
 
 const Mini = ({
   miniShown,
   setMiniShown
 }) => {
 
+  const computeClassName = () => 'mini';
   return (
     <ReactModal 
+      className={computeClassName()}
       isOpen={miniShown}
-      contentLabel="Minimal Modal Example" >
-      <button onClick={() => setMiniShown(false)}>Close Modal</button>
+      onRequestClose={() => setMiniShown(false)} >
     </ReactModal>
   );
 }
 
-export default Mini;
+const mapStateToProps = ({ miniShown }) => ({ miniShown });
+
+export default connect(mapStateToProps, null)(Mini);

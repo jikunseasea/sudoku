@@ -1,16 +1,24 @@
 .grid {
-  border: 0.1rem solid #ddd;
+  border-top: 0.1rem solid #ddd;
+  border-left: 0.1rem solid #ddd;
   box-sizing: border-box;
   display: flex;
   justify-content: center;
   align-items: center;
-  font: 2rem monospace, sans-serif; }
+  font: 2rem monospace, sans-serif;
+  user-select: none; }
 
 .right-boundary {
   border-right: none; }
 
 .bottom-boundary {
   border-bottom: none; }
+
+.left-boundary {
+  border-left: none; }
+
+.top-boundary {
+  border-top: none; }
 
 .puzzled {
   background-color: #eee; }

@@ -2,7 +2,9 @@ import React from 'react';
 
 import {
   checkIsBottomBoundary,
-  checkIsRightBoundary
+  checkIsRightBoundary,
+  checkIsLeftBoundary,
+  checkIsTopBoundary
 } from '../../logic/matrix';
 
 import './grid.css';
@@ -45,13 +47,20 @@ const Grid = ({
   const computeClassName = () => {
     const classNames = ['grid'];
     const { rowIndex, colIndex } = gridCor;
-    const length = boxSize ** 2;
-    const index = rowIndex * length + colIndex;
-    if (checkIsRightBoundary(index, boxSize)) {
+    const innerRowIndex = rowIndex % boxSize;
+    const innerColIndex = colIndex % boxSize;
+    const innerIndex = innerRowIndex * boxSize + innerColIndex;
+    if (checkIsRightBoundary(innerIndex, boxSize)) {
       classNames.push('right-boundary');
     }
-    if (checkIsBottomBoundary(index, boxSize)) {
+    if (checkIsBottomBoundary(innerIndex, boxSize)) {
       classNames.push('bottom-boundary');
+    }
+    if (checkIsLeftBoundary(innerIndex, boxSize)) {
+      classNames.push('left-boundary');
+    }
+    if (checkIsTopBoundary(innerIndex, boxSize)) {
+      classNames.push('top-boundary');
     }
     if (gridPuzzled) {
       classNames.push('puzzled');

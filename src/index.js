@@ -7,7 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import rootReducer from './reducers/root-reducer';
 import './index.css';
-import Home from './components/home/home';
+import App from './components/app/app';
 
 const store = createStore(
   rootReducer,
@@ -16,7 +16,7 @@ const store = createStore(
 
 ReactDOM.render(
   <Provider store={store}>
-    <Home />
+    <App />
   </Provider>,
   document.getElementById('root')
 );

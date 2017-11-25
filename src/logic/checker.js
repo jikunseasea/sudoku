@@ -7,8 +7,7 @@ const {
   makeMatrix,
   cloneMatrix,
   overrideMatrix,
-  getBoxDataFromMatrixIndex,
-  makeShuffledRow
+  getBoxDataFromMatrixIndex
 } = require("./matrix");
 
 const checkCurrentMatrix = (matrix) => {
@@ -27,10 +26,14 @@ const checkArray = (arr) => {
   const { length } = arr;
   const rowMarks = arr.map(v => true);
   for (let i = 0; i < length - 1; ++i) {
-    for (let j = i + 1; j < length; ++j) {
-      if (arr[j] === arr[i]) {
-        rowMarks[j] = rowMarks[i] = false;
+    if (typeof arr[i] === 'number') {
+      for (let j = i + 1; j < length; ++j) {
+        if (arr[j] === arr[i]) {
+          rowMarks[j] = rowMarks[i] = false;
+        }
       }
+    } else {
+      rowMarks[i] = false;
     }
   }
   return rowMarks;
@@ -165,8 +168,25 @@ const checkBoxes = (matrix, marksMatrix) => {
 
 // ────────────────────────────────────────────────────────────────────────────────
 
+const uncheckCurrentMatrix = (matrix) => {
+  console.log(matrix);
+  const cloned = cloneMatrix(matrix);
+  const rowCnt = cloned.length;
+  const colCnt = cloned[0].length;
+  for (let i = 0; i < rowCnt; ++i) {
+    for (let j = 0; j < colCnt; ++j) {
+      if (cloned[i][j] === false) cloned[i][j] = null;
+    }
+  }
 
-module.exports = { checkCurrentMatrix };
+  return cloned;
+}
+
+
+module.exports = {
+  checkCurrentMatrix, 
+  uncheckCurrentMatrix
+};
 
 
 //

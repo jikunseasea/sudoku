@@ -1,0 +1,11 @@
+@import '../_variables';
+.difficulty {
+  display: flex;
+  justify-content: center;
+  color: $theme-ug-darker;
+
+  .active {
+    background-color: #3498db;
+    color: $theme-ug-light;
+  }
+}

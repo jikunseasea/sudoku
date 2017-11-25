@@ -4,7 +4,7 @@ import Box from '../box/box';
 
 import {
   getBoxDataFromMatrixIndex,
-  isEqualMatrix
+  // isEqualMatrix
 } from '../../logic/matrix';
 
 import './game.css';
@@ -14,13 +14,10 @@ const Game = ({
   valueMatrix,
   solution,
   puzzled,
+  validation,
   boxSize,
-  handlePop,
-  handleSuccess
+  handlePop
 }) => {
-  if (isEqualMatrix(valueMatrix, solution)) {
-    handleSuccess();
-  }
 
   const renderBoxes = () => {
     const length = boxSize ** 2;
@@ -36,12 +33,14 @@ const Game = ({
       const boxSolution = getBoxDataFromMatrixIndex(solution, startCor);
       const boxPuzzled = getBoxDataFromMatrixIndex(puzzled, startCor);
       const boxValue = getBoxDataFromMatrixIndex(valueMatrix, startCor);
+      const boxValidation = getBoxDataFromMatrixIndex(validation, startCor);
       boxes.push(
         <Box
           key={i}
           boxCor={boxCor}
           boxSolution={boxSolution}
           boxPuzzled={boxPuzzled}
+          boxValidation={boxValidation}
           boxSize={boxSize}
           handlePop={handlePop}
           curGrid={curGrid}
@@ -61,9 +60,11 @@ const Game = ({
 
 const mapStateToProps = ({
   curGrid,
-  valueMatrix
+  valueMatrix,
+  validation
 }) => ({
   curGrid,
-  valueMatrix
+  valueMatrix,
+  validation
 });
 export default connect(mapStateToProps)(Game);

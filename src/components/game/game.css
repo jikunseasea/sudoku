@@ -1,7 +1,7 @@
 .game {
   width: 90vw;
   height: 90vw;
-  margin: 5rem auto;
+  margin: 3rem auto;
   display: flex;
   flex-flow: row wrap; }
 

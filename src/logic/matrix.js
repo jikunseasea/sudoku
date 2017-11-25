@@ -114,6 +114,19 @@ const isEqualMatrix = (m1, m2) => {
   return true;
 };
 
+const mergeMatrix = (m1, m2, fn) => {
+  const cloned = cloneMatrix(m1);
+  m2.forEach((row, i) => {
+    row.forEach((cell, j) => {
+      if (!fn(cell)) {
+        cloned[i][j] = null;
+      }
+    });
+  });
+
+  return cloned;
+};
+
 
 module.exports = {
   makeMatrix,
@@ -125,5 +138,6 @@ module.exports = {
   checkIsLeftBoundary,
   checkIsTopBoundary,
   overrideMatrix,
+  mergeMatrix,
   isEqualMatrix
 };

@@ -15,6 +15,7 @@ const Box = ({
   boxCor,
   boxSolution,
   boxPuzzled,
+  boxValidation,
   handlePop,
   curGrid,
   boxValue
@@ -35,6 +36,7 @@ const Box = ({
           gridPuzzled={boxPuzzled[i]}
           gridValue={boxValue[i]}
           handlePop={handlePop}
+          gridValidation={boxValidation[i]}
           curGrid={curGrid} />
       );
     }

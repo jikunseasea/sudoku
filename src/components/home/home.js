@@ -7,14 +7,20 @@ import Game from '../game/game'
 import Controller from '../controller/controller';
 import Mini from '../mini/mini';
 import Success from '../success/success';
+import Difficulty from '../difficulty/difficulty';
 
 import { BOX_SIZE as boxSize } from '../../constants/game';
 
 import {
   setValue,
   setCurGrid,
+  checkValidation,
+  uncheckValidation,
   setMiniShown,
-  setSuccessShown
+  setSuccessShown,
+  initValidation,
+  initValue,
+  clearCurGrid
 } from '../../actions/actions';
 
 import './home.css';
@@ -22,11 +28,22 @@ import './home.css';
 const Home = ({
   solution,
   puzzled,
+  valueMatrix,
+  validation,
   curGrid,
   setValue,
   setCurGrid,
+  checkValidation,
+  uncheckValidation,
   setMiniShown,
-  setSuccessShown
+  setSuccessShown,
+  initValidation,
+  initValue,
+  setSolution,
+  setPuzzled,
+  clearCurGrid,
+  setDifficulty,
+  difficulty
 }) => {
 
   const handlePop = (gridCor) => {
@@ -35,15 +52,49 @@ const Home = ({
   };
 
   const handleClickMini = (e) => {
+    uncheck();
     setMiniShown(false);
-    console.log(e.target);
-    setValue(curGrid, e.target.innerHTML);
+    const inputValue = e.target.innerHTML;
+    let value = Number.parseInt(inputValue, 10);
+    value = isNaN(value) ? inputValue : value;
+    setValue(curGrid, value);
   };
 
-  const handleSuccess = () => {
-    setSuccessShown(true);
-    setCurGrid({ rowIndex: null, colIndex: null});
+  const isSucceeded = (matrix) => matrix.every(row => row.every(cell => cell === true));
+  const check = () => {
+    if (isSucceeded(validation)) {
+      setSuccessShown(true);
+      clearCurGrid();
+      return;
+    }
+    checkValidation(solution, puzzled, valueMatrix);
+  };
+
+  const uncheck = () => {
+    uncheckValidation(validation);
+  };
+
+  const reset = () => {
+    initValue();
+    clearCurGrid();
+  };
+
+  const restart = () => {
+    setSolution();
+    setPuzzled(null, difficulty);
+    initValidation();
+    initValue();
+    clearCurGrid();
   }
+
+  const handleDifficulty = (level) => {
+    setDifficulty(level);
+    setSolution();
+    setPuzzled(null, level);
+    initValidation();
+    initValue();
+    clearCurGrid();
+  };
 
   return (
     <div className="home">
@@ -52,9 +103,15 @@ const Home = ({
         boxSize={boxSize}
         handlePop={handlePop}
         solution={solution}
-        puzzled={puzzled} 
-        handleSuccess={handleSuccess} />
-      <Controller />
+        puzzled={puzzled} />
+      <Difficulty
+        difficulty={difficulty}
+        handleDifficulty={handleDifficulty} />
+      <Controller
+        check={check}
+        uncheck={uncheck}
+        reset={reset}
+        restart={restart} />
       <Mini
         boxSize={boxSize}
         setMiniShown={setMiniShown}
@@ -65,21 +122,32 @@ const Home = ({
   );
 }
 
-const mapStateToProps = ({
-  solution,
+const mapStateToProps = ({  solution,
   puzzled,
-  curGrid
+  valueMatrix,
+  validation,
+  curGrid,
+  difficulty
 }) => ({
   solution,
   puzzled,
-  curGrid
+  valueMatrix,
+  validation,
+  curGrid,
+  difficulty
 });
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
+  // setDifficulty,
   setValue,
   setCurGrid,
+  checkValidation,
+  uncheckValidation,
   setMiniShown,
-  setSuccessShown
+  setSuccessShown,
+  initValidation,
+  initValue,
+  clearCurGrid
 }, dispatch);
 
 export default connect(

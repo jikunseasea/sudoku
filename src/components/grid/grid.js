@@ -14,6 +14,7 @@ const Grid = ({
   gridCor,
   gridSolution,
   gridPuzzled,
+  gridValidation,
   gridValue,
   handlePop,
   curGrid
@@ -24,7 +25,7 @@ const Grid = ({
   );
   
   const isValid = () => {
-    if (!gridPuzzled && (gridValue !== '') && (gridSolution !== gridValue)) {
+    if (!gridPuzzled && (gridValidation === false)) {
       return false;
     }
     return true;
@@ -65,6 +66,7 @@ const Grid = ({
     if (gridPuzzled) {
       classNames.push('puzzled');
     }
+    // if (isValid()) {
     if (isValid()) {
       classNames.push('valid');
     } else {

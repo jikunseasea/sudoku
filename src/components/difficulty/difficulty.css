@@ -1,0 +1,7 @@
+.difficulty {
+  display: flex;
+  justify-content: center;
+  color: #555; }
+  .difficulty .active {
+    background-color: #3498db;
+    color: #ddd; }

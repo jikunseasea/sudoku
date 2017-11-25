@@ -4,7 +4,9 @@ import { bindActionCreators } from 'redux';
 import {
   setSolution,
   setPuzzled,
-  initValue
+  initValidation,
+  initValue,
+  setDifficulty
 } from './actions/actions';
 
 import Home from './components/home/home';
@@ -12,21 +14,31 @@ import Home from './components/home/home';
 const App = ({
   setSolution,
   setPuzzled,
-  initValue
+  initValidation,
+  initValue,
+  setDifficulty
 }) => {
+  console.log('re-render...');
   setSolution();
   setPuzzled();
+  initValidation();
   initValue();
   return (
-    <Home />
+    <Home
+      setSolution={setSolution}
+      setPuzzled={setPuzzled}
+      setDifficulty={setDifficulty} />
   );
 };
 
+// const mapStateToProps = ({ difficulty }) => ({ difficulty });
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
   setSolution,
   setPuzzled,
-  initValue
+  initValidation,
+  initValue,
+  setDifficulty
 }, dispatch);
 
 export default connect(

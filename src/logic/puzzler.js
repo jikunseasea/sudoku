@@ -4,12 +4,12 @@
 // ────────────────────────────────────────────────────────────────────────────────────────────────────
 //
 
-const { LEVEL: level } = require('../constants/game');
+// const { LEVEL: level } = require('../constants/game');
 const { makeMatrix } = require('./matrix');
 
-const puzzle = (size) => (
+const puzzle = (size, difficulty) => (
   makeMatrix(size, size).map(row => (
-    row.map(v => Math.random() > level ? true : false)
+    row.map(v => Math.random() > difficulty ? true : false)
   ))
 );
 

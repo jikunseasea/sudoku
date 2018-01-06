@@ -75,7 +75,8 @@ const Mini = ({
   <ReactModal
     className="mini"
     isOpen={miniShown}
-    onRequestClose={() => setMiniShown(false)}>
+    onRequestClose={() => setMiniShown(false)}
+    ariaHideApp={false}>
     <MiniGrids 
       boxSize={boxSize} 
       handleClickMini={handleClickMini} />
